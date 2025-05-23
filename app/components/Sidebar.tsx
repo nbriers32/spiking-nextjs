@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { usePathname } from 'next/navigation'
 
 import {
@@ -10,7 +10,7 @@ import {
   UserIcon,
   DocumentDuplicateIcon,
   CogIcon,
-  InformationCircleIcon
+  InformationCircleIcon,
 } from "@heroicons/react/24/outline";
 
 
@@ -56,7 +56,9 @@ const Sidebar = () => {
               </Link>
             )
           })}
+
           <hr className="my-3 text-gray-700"></hr>
+
           {navItemsBottom.map((navItemBottom, i) => {
             return (
               <Link href={navItemBottom.href} key={i} className={`${navItemBottom.href === pathname ? 'text-blue-700 font-bold' : ''} transition-colors relative flex items-center hover:bg-gray-700 p-2 rounded gap-4`}>

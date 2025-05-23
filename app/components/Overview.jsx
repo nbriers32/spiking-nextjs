@@ -7,9 +7,10 @@ const Overview = async () => {
     const resTodos = await fetch("https://jsonplaceholder.typicode.com/todos")
     const allTodos = await resTodos.json()
     const completedTodos = allTodos.filter(todo => todo.completed == true)
+
     return (
         <div className="mt-5 text-2xl">
-            <div className="w-full bg-white p-10 rounded-xl">
+            <div className="w-full bg-white p-10 rounded-xl shadow-md">
             <div className="flex items-center gap-2">
                 <ListBulletIcon className="h-8 w-8 text-blue-700"/>
                 <h2 className="font-bold"> Overview </h2>
@@ -17,8 +18,8 @@ const Overview = async () => {
                 <p className="text-sm text-gray-500"> {completedTodos.length} completed of {allTodos.length} total</p>
 
                 {/* Task Progress Bar */}
-                <div className="bg-gray-300 h-4">
-                    <div className={`bg-blue-700 h-full`} style={{width: `${(completedTodos.length / allTodos.length) * 100}%`}}></div>
+                <div className="bg-gray-300 h-4 rounded">
+                    <div className={`bg-blue-700 h-full rounded`} style={{width: `${(completedTodos.length / allTodos.length) * 100}%`}}></div>
                 </div>
 
             </div>
