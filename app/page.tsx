@@ -1,14 +1,10 @@
-import ProductCard from "./users/components/ProductCard";
+import Overview from "./components/Overview";
 
 export default function Home() {
   return (
     <main>
-      <h1><b> Hello </b>, Welcome to your Dashboard </h1>
-      <p> Overview</p>
-      <p> KPIs</p>
-      <p> Item Tiles</p>
-      <p> Reports</p>
-      <ProductCard/>
+      <h1 className="text-3xl"><b> Hello</b>, Welcome to your Dashboard </h1>
+      <Overview/>
     </main>
   );
 }
