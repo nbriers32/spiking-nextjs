@@ -34,7 +34,7 @@ const Sidebar = () => {
   ]
 
   return (
-    <aside className={`${isExpanded? "w-64": "w-20"} max-md:w-20 whitespace-nowrap transition-all duration-300 ease-in-out h-screen`}>
+    <aside className={`${isExpanded? "w-64": "w-20"} max-md:w-20 whitespace-nowrap transition-all duration-300 ease-in-out h-screen z-50`}>
 
       {/* Side Bar */}
       <div className=" shadow:lg bg-gray-800 text-white p-4 h-full ">
