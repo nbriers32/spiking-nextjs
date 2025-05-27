@@ -6,7 +6,7 @@ interface Fact {
     source? : string
 }
 
-const Header = () => {
+const Header = ({isExpanded}: {isExpanded: boolean}) => {
     const [facts, setFacts] = useState<Fact[]>([])
     const [index, setIndex] = useState(0);
     const [isFactVisible, setIsFactVisible] = useState(true)
@@ -30,7 +30,7 @@ const Header = () => {
                 setIndex((currIndex) => (currIndex + 1) % (facts.length))
                 setIsFactVisible(true)
             }, 500)
-        }, 5000)
+        }, 10000)
         return () => {
             clearInterval(interval)
         }
@@ -39,14 +39,20 @@ const Header = () => {
 
     return (
         <div 
-            className="
-            bg-white dark:bg-gray-800
-            top-0 left-0 w-screen fixed h-20
-            shadow-md border-b-2 border-gray-300 
-            flex items-center justify-center">
+            className={`
+                ${isExpanded ? 'pl-64' : 'pl-20'} max-md:pl-20 overflow-hidden
+                transition-[padding] duration-300 ease-in-out
+                bg-white dark:bg-gray-800
+                top-0 left-0 w-screen fixed h-20
+                shadow-md border-b-2 border-gray-300 
+                flex items-center justify-center`}>
+
             {/* Random Facts  */}
             <div>
-                <p className={`${isFactVisible ? "" : "opacity-0"} transition-opacity duration-500 ease-in-out`}>  {facts[index]?.fact || "Loading facts..."} {facts[index]?.source ? `- ${facts[index].source}` : ""} </p>
+                <p className={`${isFactVisible ? "" : "opacity-0"}
+                 transition-opacity duration-500 ease-in-out`}>  
+                 {facts[index]?.fact || "Loading facts..."} {facts[index]?.source ? `- ${facts[index].source}` : ""} 
+                 </p>
             </div>
         </div>
     )

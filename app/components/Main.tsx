@@ -1,20 +1,45 @@
-import React, { ReactNode } from 'react'
-import Sidebar from './Sidebar'
+'use client'
+import React, { ReactNode, useState } from 'react'
+import SideBarNavItems from './Sidebar-Nav-Items'
 import Header from './Header'
 
-const Main = ({ children }: { children: ReactNode }) => {
-  return (
-    <div className="flex min-h-screen">
-        <Header/>
-        
-        <Sidebar/>
+import {
+  ChevronDoubleLeftIcon,
+} from '@heroicons/react/24/outline'
 
-        {/* Main Content */}
-        <main className="w-full p-12 pt-26 bg-blue-50">
-            {children}
-        </main>
-    </div>
-  )
+const Main = ({ children }: { children: ReactNode }) => {
+    const [isExpanded, setIsExpanded] = useState(true)
+    const toggleExpanded = () => {
+        setIsExpanded(!isExpanded)
+      }
+
+    return (
+        <>
+        <Header isExpanded={isExpanded}/>
+        <div className="flex min-h-screen">
+        {/* Side Bar */}
+            <aside className={`${isExpanded? "w-64": "w-20"} max-md:w-20 whitespace-nowrap p-4 h-screen
+            transition-all duration-300 ease-in-out 
+            z-50 shadow:lg bg-gray-800 text-white`}>
+
+                {/* SideBar Toggle */}
+                <div className={`flex justify-between items-center mb-6`}>
+                    <div className={`${isExpanded ? "" : "opacity-0 max-w-0"} max-md:hidden overflow-hidden transition-all text-xl font-bold`}>My App</div>
+                    <button className="hover:bg-gray-700 p-2 max-md:disabled max-md:hidden" onClick={() => toggleExpanded()}>
+                        <ChevronDoubleLeftIcon className="h-6 w-6"/>
+                    </button>
+                </div>
+                
+                <SideBarNavItems isExpanded={isExpanded}/>
+            </aside>
+
+                {/* Main Content */}
+                <main className="w-full p-12 pt-26 bg-blue-50">
+                    {children}
+                </main>
+            </div>
+        </>
+    )
 }
 
 export default Main

@@ -1,11 +1,9 @@
 'use client'
 
 import Link from 'next/link'
-import React, { useState } from 'react'
 import { usePathname } from 'next/navigation'
 
 import {
-  ChevronDoubleLeftIcon,
   HomeIcon,
   UserIcon,
   DocumentDuplicateIcon,
@@ -14,13 +12,8 @@ import {
 } from "@heroicons/react/24/outline";
 
 
-const Sidebar = () => {
+const SideBarNavItems = ({isExpanded} : {isExpanded: boolean}) => {
   const pathname = usePathname()
-  const [isExpanded, setIsExpanded] = useState(true)
-
-  const toggleExpanded = () => {
-    setIsExpanded(!isExpanded)
-  }
 
   const navItemsTop = [
     { href: '/', label: 'Dashboard', icon: HomeIcon },
@@ -34,18 +27,8 @@ const Sidebar = () => {
   ]
 
   return (
-    <aside className={`${isExpanded? "w-64": "w-20"} max-md:w-20 whitespace-nowrap transition-all duration-300 ease-in-out h-screen z-50`}>
-
-      {/* Side Bar */}
-      <div className=" shadow:lg bg-gray-800 text-white p-4 h-full ">
-        
-        <div className={`flex justify-between items-center mb-6`}>
-          <div className={`${isExpanded ? "" : "opacity-0 max-w-0"} max-md:hidden overflow-hidden transition-all text-xl font-bold`}>My App</div>
-          <button className="hover:bg-gray-700 p-2 max-md:disabled max-md:hidden" onClick={() => toggleExpanded()}>
-            <ChevronDoubleLeftIcon className="h-6 w-6"/>
-          </button>
-        </div>
-
+    <>
+        {/* Nav Items */}
         <nav className="flex flex-col gap-4">
 
           {navItemsTop.map((navItemTop, i) => {
@@ -69,9 +52,8 @@ const Sidebar = () => {
           })}
 
         </nav>
-      </div>
-    </aside>
+    </>
   )
 }
 
-export default Sidebar
+export default SideBarNavItems
