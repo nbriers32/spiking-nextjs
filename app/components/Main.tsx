@@ -14,10 +14,11 @@ const Main = ({ children }: { children: ReactNode }) => {
       }
 
     return (
-        <>
+        <div className="max-w-full">
         <Header isExpanded={isExpanded}/>
         <div className="flex min-h-screen">
-        {/* Side Bar */}
+
+            {/* Side Bar */}
             <aside className={`${isExpanded? "w-64": "w-20"} max-md:w-20 whitespace-nowrap p-4 h-screen
             transition-all duration-300 ease-in-out 
             z-50 shadow:lg bg-gray-800 text-white`}>
@@ -33,12 +34,12 @@ const Main = ({ children }: { children: ReactNode }) => {
                 <SideBarNavItems isExpanded={isExpanded}/>
             </aside>
 
-                {/* Main Content */}
-                <main className="w-full p-12 pt-26 bg-blue-50">
-                    {children}
-                </main>
+            {/* Main Content */}
+            <main className="w-full px-12 pt-26 bg-blue-50">
+                {children}
+            </main>
             </div>
-        </>
+        </div>
     )
 }
 
