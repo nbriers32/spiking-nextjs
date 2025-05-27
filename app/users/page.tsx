@@ -1,13 +1,13 @@
 import React from 'react'
-import DocumentTable from '../components/DocumentTable';
+import Users from '../components/Users';
 
 const UsersPage = () => {
   return (
     <>
-    <div className="bg-white dark:bg-gray-800 rounded-3xl p-4 shadow-lg">
-      <h2 className="font-bold text-3xl"> Users</h2>
+    <h2 className="font-bold text-3xl"> Users</h2>
+    <div>
       <br></br>
-      <DocumentTable/>
+      <Users/>
     </div>
     </>
   )

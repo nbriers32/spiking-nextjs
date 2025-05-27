@@ -10,7 +10,7 @@ const Overview = async () => {
 
     return (
         <div className="mt-5 text-2xl">
-            <div className="w-full bg-white p-10 rounded-xl shadow-md">
+            <div className="w-full bg-white dark:bg-gray-800 p-10 rounded-xl shadow-md">
             <div className="flex items-center gap-2">
                 <ListBulletIcon className="h-8 w-8 text-blue-700"/>
                 <h2 className="font-bold"> Overview </h2>

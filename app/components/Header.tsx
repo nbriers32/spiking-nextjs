@@ -42,9 +42,9 @@ const Header = ({isExpanded}: {isExpanded: boolean}) => {
             className={`
                 ${isExpanded ? 'pl-64' : 'pl-20'} max-md:pl-20 overflow-hidden
                 transition-[padding] duration-300 ease-in-out
-                bg-white dark:bg-gray-800
+                bg-white dark:bg-[#1a1a1a]
                 top-0 left-0 w-screen fixed h-20
-                shadow-md border-b-2 border-gray-300 
+                shadow-md border-b-2 border-gray-300 dark:border-black
                 flex items-center justify-center`}>
 
             {/* Random Facts  */}
