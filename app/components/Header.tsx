@@ -10,16 +10,19 @@ const Header = ({isExpanded}: {isExpanded: boolean}) => {
     const [facts, setFacts] = useState<Fact[]>([])
     const [index, setIndex] = useState(0);
     const [isFactVisible, setIsFactVisible] = useState(true)
+    const [error, setError] = useState(false)
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        try {
-            const getAndStoreFacts = async () => {
+        const getAndStoreFacts = async () => {
+            try {
                 const res = await fetch("https://awamody522.execute-api.eu-west-1.amazonaws.com/Prod/facts")
                 const {data} = await res.json()
                 setFacts(data)
-            }
-            getAndStoreFacts()  
-        } catch(err) {console.log(err)}
+            } catch(err: any) {setError(err.message)}
+            finally {setLoading(false)}
+        }
+        getAndStoreFacts()  
     }, []);
     
     useEffect(() => {
@@ -51,7 +54,7 @@ const Header = ({isExpanded}: {isExpanded: boolean}) => {
             <div>
                 <p className={`${isFactVisible ? "" : "opacity-0"}
                  transition-opacity duration-500 ease-in-out`}>  
-                 {facts[index]?.fact || "Loading facts..."} {facts[index]?.source ? `- ${facts[index].source}` : ""} 
+                 {error ? "Error loading facts..." : loading ? "Loading facts..." : `${facts[index].fact} ${facts[index]?.source ? `- ${facts[index].source}` : ""}` }
                  </p>
             </div>
         </div>
