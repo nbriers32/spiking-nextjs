@@ -19,6 +19,7 @@ const SingleDocPage = () => {
     const [loading, setLoading] = useState(true)
     const {id} = useParams()
     const [popupMsg, setPopupMsg] = useState<{message: string, type: 'success' | 'error', timestamp: number}>()
+    const [isDeleted, setIsDeleted] = useState(false)
 
     const handleDeleteDoc = () => {
         const deleteDoc = async () => {
@@ -28,7 +29,11 @@ const SingleDocPage = () => {
                     headers: {'Content-Type': "application/json" },
                 })
                 await res.json()
-                router.push('/docs')
+                setIsDeleted(true)
+                setPopupMsg({message: 'Successfully deleted document, redirecting you now...', timestamp: Date.now(), type: 'success'})
+                setTimeout(() => {
+                    router.push('/docs')
+                }, 3000)
             }catch(err: any){ setError(err.message)}
         }
         deleteDoc()
@@ -67,9 +72,14 @@ const SingleDocPage = () => {
                     </span>
                 )
             })}
+
             <div className="flex flex-row justify-between">
-                <button className="p-2 bg-red-400 text-white font-bold rounded shadow" onClick={() => handleDeleteDoc()}>  Delete Document</button>
-                <button className="p-2 bg-blue-700 text-white font-bold rounded shadow" onClick={() => setPopupMsg({message: "Successfully updated document", type: "success", timestamp: Date.now()})}> Save Changes </button>
+                { !isDeleted && 
+                    <>
+                    <button className="p-2 bg-red-400 text-white font-bold rounded shadow" onClick={() => handleDeleteDoc()}>  Delete Document</button>
+                    <button className="p-2 bg-blue-700 text-white font-bold rounded shadow" onClick={() => setPopupMsg({message: "Successfully updated document", type: "success", timestamp: Date.now()})}> Save Changes </button>
+                    </>
+                }
             </div>
         </div>
         </>
