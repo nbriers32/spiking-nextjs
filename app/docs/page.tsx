@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import DocsView from '../components/DocsView'
 import Overlay from '../components/Overlay'
-import ErrorPopup from '../components/ErrorPopup'
+import Popup from '../components/Popup'
 
 type DocumentType = "standards" | "regulations" | "icon" | "template" | "dummy"
 interface Document {
@@ -15,7 +15,7 @@ const DocsPage = () => {
     const [documentsArr, setDocumentsArr] = useState<Document[]>([])
     const [loading, setLoading] = useState(true)
     const [getError , setGetError] = useState("")
-    const [postError, setPostError] = useState<{message: string, timestamp: number} | null>(null)
+    const [popupMsg, setPopupMsg] = useState<{message: string, timestamp: number, type: 'success' | 'error'} | null>(null)
     const [isModalOpen, setIsModalOpen] = useState(false)
 
     const handleOpenModal = () => {
@@ -25,18 +25,29 @@ const DocsPage = () => {
     const handleCreateDoc = (e: any) => {
         e.preventDefault()
         const {name, version, type} = e.target
+        const docToPost = {
+            name: name.value,
+            version: version.value,
+            type: type.value
+        }
         const postDoc = async () => {
             try {
                 const res = await fetch("/api/docs", {
                     method: "POST",
                     headers: {'Content-Type': "application/json" },
-                    body: JSON.stringify({name: name.value, version: version.value, type: type.value})
+                    body: JSON.stringify(docToPost)
                 })
                 const data = await res.json()
-                console.log(data)
+                setDocumentsArr((currDocsArr => {
+                    return [...currDocsArr, data.body ]
+                }))
+                setPopupMsg({message: data.message, timestamp: Date.now(), type: "success"})
             } catch(err: any) {
-                setPostError({message: err.message, timestamp: Date.now()})
-            } 
+                setPopupMsg({message: err.message, timestamp: Date.now(), type: "error"})
+            } finally {
+                setIsModalOpen(false)
+                e.target.reset()
+            }
         }
         postDoc()
     }
@@ -56,37 +67,37 @@ const DocsPage = () => {
 
     return (
         <>
+        {popupMsg  && (<Popup key={popupMsg.timestamp} popupMsg={popupMsg.message} type={popupMsg.type}/>)}
         <div className={`${isModalOpen ? "opacity-100" : "opacity-0"} transition-all duration-300 ease-in-out`}>
             <Overlay>
                 {/* Modal Window */}
-                {postError  && (<ErrorPopup key={postError.timestamp} errMsg={postError.message}/>)}
                 <div className="p-4 rounded-lg bg-white shadow-sm">
                     <div>
                         <h3 className="text-2xl font-bold"> Create New Document </h3>
                         <form className="flex flex-col gap-4" onSubmit={(e) => handleCreateDoc(e)}>
-                            {["name", "version", "type"].map((fieldName, i) => {
-                                if (fieldName === "type") return (
-                                    <span key={i}>
-                                        <label htmlFor={fieldName}>{fieldName[0].toUpperCase() + fieldName.slice(1)} </label>
-                                        <br/>
-                                        <select defaultValue="" className="border-1 rounded bg-blue-50 w-full" id={fieldName} required>
-                                            <option hidden disabled value=""> Document Type </option>
-                                            <option value="standards"> Standards </option>
-                                            <option value="regulations"> Regulations </option>
-                                            <option value="icon"> Icon </option>
-                                            <option value="template"> Template </option>
-                                        </select>
-                                    </span>
-                                )
-
-                                return (
-                                    <span key={i}>
-                                        <label htmlFor={fieldName}>{fieldName[0].toUpperCase() + fieldName.slice(1)} </label>
-                                        <br/>
-                                        <input className="border-1 rounded bg-blue-50 w-full" type="string" id={fieldName} required/>
-                                    </span>
-                                )
-                            })}
+                                <span>
+                                    <label htmlFor="name">Document Name </label>
+                                    <br/>
+                                    <input className="border-1 rounded bg-blue-50 w-full" type="string" id="name" required/>
+                                </span>
+                                
+                                <span>
+                                    <label htmlFor="version">Version </label>
+                                    <br/>
+                                    <input className="border-1 rounded bg-blue-50 w-full" type="number" id="version" step="any" required/>
+                                </span>
+                        
+                                <span>
+                                    <label htmlFor="type"> Type </label>
+                                    <br/>
+                                    <select defaultValue="" className="border-1 rounded bg-blue-50 w-full" id="type" required>
+                                        <option hidden disabled value=""> Document Type </option>
+                                        <option value="standards"> Standards </option>
+                                        <option value="regulations"> Regulations </option>
+                                        <option value="icon"> Icon </option>
+                                        <option value="template"> Template </option>
+                                    </select>
+                                </span>
 
                             <input className="p-2 bg-blue-700 text-white font-bold rounded shadow" type="submit" value="Create Document"/>
                         </form>
