@@ -1,0 +1,34 @@
+{
+  "documents": [
+    {
+      "name": "Home Bargains Icon",
+      "version": 1,
+      "type": "icon",
+      "id": "a4c0"
+    },
+    {
+      "name": "Food Safety Standards",
+      "version": 1.7,
+      "type": "standards",
+      "id": "ea15"
+    },
+    {
+      "name": "Document 3",
+      "version": 3,
+      "type": "dummy",
+      "id": "ec46"
+    },
+    {
+      "name": "Faulty Document Type",
+      "version": 0,
+      "type": "fake type",
+      "id": "42bb"
+    },
+    {
+      "id": "0b3b",
+      "name": "Nathan ",
+      "version": "asdasd",
+      "type": "regulations"
+    }
+  ]
+}

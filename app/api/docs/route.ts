@@ -1,29 +1,10 @@
 import { NextResponse, NextRequest } from "next/server";
 
-const documents = [
-    {
-        name: "Home Bargains Icon",
-        version: 1,
-        type: "icon",
-    },
-    {
-        name: "Food Safety Standards",
-        version: 1.7,
-        type: "standards"
-    },
-    {
-        name: "Document 3",
-        version: 3,
-        type: "dummy",
-    },
-    {
-        name: "Faulty Document Type",
-        version: 0,
-        type: "fake type"
-    }
-]
 
 export async function GET() {
+    const res = await fetch("http://localhost:5000/documents")
+    const documents = await res.json()
+
     return NextResponse.json({
         message: "Successfully queried documents",
         data: documents
@@ -33,8 +14,6 @@ export async function GET() {
 export async function POST(request: NextRequest) {
     const body = await request.json()
 
-    console.log(body)
-
     if (!body.name || !body.version || !body.type){
         return NextResponse.json(
             {message: "Body must contain a name, version, and a type"},
@@ -42,10 +21,22 @@ export async function POST(request: NextRequest) {
         );
     }
 
-    documents.push(body)
+    const res = await fetch("http://localhost:5000/documents",
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(body)
+        }
+    )
 
-    return NextResponse.json(
-        { message: "New document successfully created"},
+    const todo = await res.json();
+
+    return NextResponse.json({ 
+        message: "New document successfully created",
+        body: todo
+    },
         { status: 201 },
     );
 }
