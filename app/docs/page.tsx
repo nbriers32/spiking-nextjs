@@ -27,7 +27,6 @@ const DocsPage = () => {
         const {name, version, type} = e.target
         const postDoc = async () => {
             try {
-                throw Error("Test error")
                 const res = await fetch("/api/docs", {
                     method: "POST",
                     headers: {'Content-Type': "application/json" },
@@ -37,9 +36,7 @@ const DocsPage = () => {
                 console.log(data)
             } catch(err: any) {
                 setPostError({message: err.message, timestamp: Date.now()})
-            } finally {
-                console.log(postError)
-            }
+            } 
         }
         postDoc()
     }
