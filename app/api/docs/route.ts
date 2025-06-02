@@ -32,17 +32,18 @@ export async function POST(request: NextRequest) {
         }
     )
 
-    const todo = await res.json();
+    if (!res.ok) {
+        return NextResponse.json({
+            message: "Failed to delete document"
+        }, {status: res.status})
+    }
+
+    const doc = await res.json();
 
     return NextResponse.json({ 
         message: "New document successfully created",
-        body: todo
+        body: doc
     },
         { status: 201 },
     );
-}
-
-export async function DELETE(request: NextRequest){
-    const searchParams = request.nextUrl.searchParams
-    console.log(searchParams)
 }

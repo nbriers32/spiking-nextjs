@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'next/navigation'
 import Popup from '@/app/components/Popup'
+import { useRouter } from 'next/navigation'
 
 type DocumentType = "standards" | "regulations" | "icon" | "template" | "dummy"
 interface Document {
@@ -12,11 +13,26 @@ interface Document {
 }
 
 const SingleDocPage = () => {
+    const router = useRouter()
     const [document, setDocument] = useState<Document>()
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(true)
     const {id} = useParams()
     const [popupMsg, setPopupMsg] = useState<{message: string, type: 'success' | 'error', timestamp: number}>()
+
+    const handleDeleteDoc = () => {
+        const deleteDoc = async () => {
+            try {
+                const res = await fetch(`/api/docs/${id}`, {
+                    method: "DELETE",
+                    headers: {'Content-Type': "application/json" },
+                })
+                await res.json()
+                router.push('/docs')
+            }catch(err: any){ setError(err.message)}
+        }
+        deleteDoc()
+    }
 
     useEffect(() => {
         const getDocById = async () => {
@@ -47,12 +63,12 @@ const SingleDocPage = () => {
                 return (
                     <span key={value}>
                         <p> {key[0].toUpperCase() + key.slice(1)}:</p>
-                        <input className="border-1 rounded bg-blue-50 w-full font-bold p-2" type="string" id={value} value={value}/> 
+                        <input className="border-1 rounded bg-blue-50 w-full font-bold p-2" type="string" id={value} placeholder={value}/> 
                     </span>
                 )
             })}
             <div className="flex flex-row justify-between">
-                <button className="p-2 bg-red-400 text-white font-bold rounded shadow">  Delete Document</button>
+                <button className="p-2 bg-red-400 text-white font-bold rounded shadow" onClick={() => handleDeleteDoc()}>  Delete Document</button>
                 <button className="p-2 bg-blue-700 text-white font-bold rounded shadow" onClick={() => setPopupMsg({message: "Successfully updated document", type: "success", timestamp: Date.now()})}> Save Changes </button>
             </div>
         </div>

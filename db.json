@@ -1,12 +1,6 @@
 {
   "documents": [
     {
-      "name": "Home Bargains Icon",
-      "version": 1,
-      "type": "icon",
-      "id": "a4c0"
-    },
-    {
       "name": "Food Safety Standards",
       "version": 1.7,
       "type": "standards",
@@ -23,36 +17,6 @@
       "version": 0,
       "type": "fake type",
       "id": "42bb"
-    },
-    {
-      "id": "9493",
-      "name": "Nathan ",
-      "version": "asd",
-      "type": "regulations"
-    },
-    {
-      "id": "559f",
-      "name": "Nathan ",
-      "version": "asd",
-      "type": "regulations"
-    },
-    {
-      "id": "c5a1",
-      "name": "Nathan ",
-      "version": "asdasd",
-      "type": "regulations"
-    },
-    {
-      "id": "3dd0",
-      "name": "Nathans Document",
-      "version": "asdasd",
-      "type": "regulations"
-    },
-    {
-      "id": "f763",
-      "name": "Nathan ",
-      "version": "asdasd",
-      "type": "regulations"
     }
   ]
 }
