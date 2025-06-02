@@ -6,6 +6,7 @@ import Popup from '../components/Popup'
 
 type DocumentType = "standards" | "regulations" | "icon" | "template" | "dummy"
 interface Document {
+    id: number,
     name: string,
     type: DocumentType
     version: number,

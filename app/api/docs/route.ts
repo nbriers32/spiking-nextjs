@@ -40,3 +40,8 @@ export async function POST(request: NextRequest) {
         { status: 201 },
     );
 }
+
+export async function DELETE(request: NextRequest){
+    const searchParams = request.nextUrl.searchParams
+    console.log(searchParams)
+}
