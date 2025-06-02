@@ -37,7 +37,6 @@ const Header = ({isExpanded}: {isExpanded: boolean}) => {
         return () => {
             clearInterval(interval)
         }
-    
     }, [facts])
 
     return (

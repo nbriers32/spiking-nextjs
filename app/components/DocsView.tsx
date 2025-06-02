@@ -1,8 +1,9 @@
 import React from 'react'
+import DocumentIcon from './DocumentIcon'
 
 interface Document {
     name: string,
-    type: string
+    type: "standards" | "regulations" | "icon" | "template" | "dummy"
     version: number,
 }
 interface DocsViewProps {
@@ -25,6 +26,7 @@ const DocsView: React.FC<DocsViewProps> = ({documentsArr, loading, error}) => {
                             <p className="font-bold"> {document.name} </p>
                         </span>
                         <p className="text-sm text-gray-500 italic"> v{document.version}</p>
+                        <DocumentIcon docType={document.type}/>
                     </div>
                 )})}
                 </div>

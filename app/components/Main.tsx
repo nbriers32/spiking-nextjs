@@ -21,7 +21,7 @@ const Main = ({ children }: { children: ReactNode }) => {
             {/* Side Bar */}
             <aside className={`${isExpanded? "w-64": "w-20"} max-md:w-20 whitespace-nowrap p-4 h-screen
             transition-all duration-300 ease-in-out 
-            z-50 shadow:lg bg-gray-800 dark:bg-[#1a1a1a] text-white`}>
+            z-25 shadow:lg bg-gray-800 dark:bg-[#1a1a1a] text-white`}>
 
                 {/* SideBar Toggle */}
                 <div className={`flex justify-between items-center mb-6 ` }>
