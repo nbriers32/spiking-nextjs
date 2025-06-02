@@ -70,11 +70,15 @@ const DocsPage = () => {
         <>
         {popupMsg  && (<Popup key={popupMsg.timestamp} popupMsg={popupMsg.message} type={popupMsg.type}/>)}
         <div className={`${isModalOpen ? "opacity-100" : "opacity-0"} transition-all duration-300 ease-in-out`}>
+            { isModalOpen &&
             <Overlay>
                 {/* Modal Window */}
-                <div className="p-4 rounded-lg bg-white shadow-sm">
+                <div className="p-6 rounded-lg bg-white shadow-sm">
                     <div>
+                        <div className="flex flex-row justify-between items-center gap-4">
                         <h3 className="text-2xl font-bold"> Create New Document </h3>
+                        <button onClick={() => setIsModalOpen(false)} className="p-2 bg-slate-300 rounded shadow font-bold"> Close</button>
+                        </div>
                         <form className="flex flex-col gap-4" onSubmit={(e) => handleCreateDoc(e)}>
                                 <span>
                                     <label htmlFor="name">Document Name </label>
@@ -105,6 +109,7 @@ const DocsPage = () => {
                     </div>
                 </div>
             </Overlay>
+            }
         </div>
         
         
