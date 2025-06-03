@@ -64,12 +64,12 @@ const SingleDocPage = () => {
         {popupMsg && (<Popup key={popupMsg.timestamp} popupMsg={popupMsg.message} type={popupMsg.type}/>)}
         <h2 className="font-bold text-3xl"> Document Details </h2>
         <br/>
-        <div className="bg-white dark:bg-slate-700 rounded shadow-md
+        <div className="bg-background dark:bg-slate-700 rounded shadow-md
         p-8
         flex gap-4 flex-col">
             <div className="flex justify-between">
                 <p className="text-gray-500 dark:text-white"> Edit/delete your document's information </p>
-                <button onClick={() => router.push('/docs')} className="p-2 bg-slate-300 rounded shadow font-bold dark:bg-slate-200 dark:text-black"> Close</button>
+                <button onClick={() => router.push('/docs')} className="p-2 bg-slate-300 rounded shadow font-bold dark:bg-slate-00 dark:text-black"> Close</button>
             </div>
 
             {/* Document Fields */}
