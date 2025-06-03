@@ -4,6 +4,11 @@ import { useParams } from 'next/navigation'
 import Popup from '@/app/components/Popup'
 import { useRouter } from 'next/navigation'
 
+import {
+    TrashIcon,
+    DocumentCheckIcon
+} from '@heroicons/react/24/outline'
+
 type DocumentType = "standards" | "regulations" | "icon" | "template" | "dummy"
 interface Document {
     id: number,
@@ -76,8 +81,11 @@ const SingleDocPage = () => {
             <div className="flex flex-row justify-between">
                 { !isDeleted && 
                     <>
-                    <button className="p-2 bg-red-400 text-white font-bold rounded shadow" onClick={() => handleDeleteDoc()}>  Delete Document</button>
-                    <button className="p-2 bg-blue-700 text-white font-bold rounded shadow" onClick={() => setPopupMsg({message: "Successfully updated document", type: "success", timestamp: Date.now()})}> Save Changes </button>
+                        <button className="p-2 bg-red-400 text-white font-bold rounded shadow flex flex-row items-center" onClick={() => handleDeleteDoc()}>  
+                            <TrashIcon className="w-6 h-6 text-white"/> Delete Document</button>
+                        <button className="p-2 bg-blue-700 text-white font-bold rounded shadow flex flex-row items-center" onClick={() => setPopupMsg({message: "Successfully updated document", type: "success", timestamp: Date.now()})}>
+                            <DocumentCheckIcon className="text-white h-6 w-6"/>  Save Changes </button>
+
                     </>
                 }
             </div>
