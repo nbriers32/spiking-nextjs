@@ -150,7 +150,10 @@ const DocsPage = () => {
 
                 <div className="relative inline-block">
                     <button onClick={() => setIsDropdownOpen(!isDropdownOpen)} className="p-2 bg-white font-bold rounded shadow"> Filter By Type </button>
-                    <div className={`${isDropdownOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'} transition-all duration-300 ease-in-out absolute mt-2 z-10 bg-white shadow-md w-full p-2`}>
+                    {/* Dropdown Menu */ }
+                    <div className={`${isDropdownOpen ? 'max-h-40 opacity-100 pointer-events-auto' : 'max-h-0 opacity-0 pointer-events-none'} 
+                    transition-all duration-300 ease-in-out 
+                    absolute mt-2 z-10 bg-white shadow-md w-full p-2 overflow-hidden `}>
                         {
                             docTypes.map((type, i) => {
                                 return (
