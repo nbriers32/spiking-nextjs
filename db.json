@@ -17,6 +17,18 @@
       "version": 0,
       "type": "fake type",
       "id": "42bb"
+    },
+    {
+      "id": "fc2a",
+      "name": "Test Doc",
+      "version": "2",
+      "type": "template"
+    },
+    {
+      "id": "b8de",
+      "name": "Nathans Document",
+      "version": "4",
+      "type": "icon"
     }
   ]
 }

@@ -5,7 +5,8 @@ import {
     WrenchIcon,
     PhotoIcon,
     ShieldCheckIcon,
-    NoSymbolIcon
+    NoSymbolIcon,
+    DocumentTextIcon
     
 } from '@heroicons/react/24/outline'
 
@@ -14,6 +15,7 @@ const iconMapper: { [key: string]: React.ComponentType<React.SVGProps<SVGSVGElem
     "dummy": WrenchIcon,
     "icon": PhotoIcon,
     "standards": ShieldCheckIcon,
+    "template": DocumentTextIcon,
 }
 
 const DocumentIcon = ({docType}:{docType: string}) => {

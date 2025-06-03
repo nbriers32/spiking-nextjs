@@ -12,12 +12,30 @@ interface Document {
     version: number,
 }
 
+const docTypes: DocumentType[] = [
+    "standards",
+    "regulations",
+    "icon",
+    "template",
+    "dummy"
+]
+
 const DocsPage = () => {
+    const [allDocuments, setAllDocuments] = useState<Document[]>([])
     const [documentsArr, setDocumentsArr] = useState<Document[]>([])
     const [loading, setLoading] = useState(true)
     const [getError , setGetError] = useState("")
     const [popupMsg, setPopupMsg] = useState<{message: string, timestamp: number, type: 'success' | 'error'} | null>(null)
     const [isModalOpen, setIsModalOpen] = useState(false)
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+    const [selectedDocTypes, setSelectedDocTypes] = useState<DocumentType[]>([])
+
+    const handleDocFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const type = e.target.value as DocumentType
+        setSelectedDocTypes(currTypes => {
+            return currTypes.includes(type) ? currTypes.filter((item) => item !== type) : [...selectedDocTypes, type]
+        })
+    }
 
     const handleOpenModal = () => {
         setIsModalOpen(true)
@@ -58,6 +76,7 @@ const DocsPage = () => {
             try {
                 const res = await fetch("/api/docs")
                 const documents = await res.json()
+                setAllDocuments(documents.data as Document[])
                 setDocumentsArr(documents.data as Document[])
             } catch(err: any) {
                 setGetError(err.message)
@@ -65,6 +84,17 @@ const DocsPage = () => {
         }
         getDocumentsData()
     }, [])
+    
+    useEffect(() => {
+        if (selectedDocTypes.length === 0) {
+            return setDocumentsArr(allDocuments)
+        }
+        setDocumentsArr(() => {
+            return allDocuments.filter(doc => {
+                return selectedDocTypes.includes(doc.type)
+            })
+        })
+    }, [selectedDocTypes])
 
     return (
         <>
@@ -117,7 +147,22 @@ const DocsPage = () => {
             <h2 className="font-bold text-3xl"> Documents </h2>
             <div className="relative flex items-center gap-4">
                 <button onClick = {() => handleOpenModal()} className="p-2 bg-blue-700 text-white font-bold rounded shadow"> Create New </button>
-                <button className="p-2 bg-white font-bold rounded shadow"> Filter By Type </button>
+
+                <div className="relative inline-block">
+                    <button onClick={() => setIsDropdownOpen(!isDropdownOpen)} className="p-2 bg-white font-bold rounded shadow"> Filter By Type </button>
+                    <div className={`${isDropdownOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'} transition-all duration-300 ease-in-out absolute mt-2 z-10 bg-white shadow-md w-full p-2`}>
+                        {
+                            docTypes.map((type, i) => {
+                                return (
+                                    <div key={i} className="flex flex-row items-center">
+                                    <input type="checkbox" id={type} className="w-5 h-5 accent-blue-700 bg-gray-100 border-gray-300 rounded" value={type} onChange={(e) => handleDocFilter(e)}/>
+                                    <label htmlFor={type}> {type[0].toUpperCase() + type.slice(1)} </label>
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
+                </div>
             </div>
         </div>
         <br/>
