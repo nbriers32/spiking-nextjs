@@ -1,8 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 import Popup from '@/app/components/Popup'
-import { useRouter } from 'next/navigation'
 
 import {
     TrashIcon,
@@ -68,7 +67,12 @@ const SingleDocPage = () => {
         <div className="bg-white rounded shadow-md
         p-8
         flex gap-4 flex-col">
-        <p className="text-gray-500"> Edit/delete your document's information </p>
+            <div className="flex justify-between">
+                <p className="text-gray-500"> Edit/delete your document's information </p>
+                <button onClick={() => router.push('/docs')} className="p-2 bg-slate-300 rounded shadow font-bold"> Close</button>
+            </div>
+
+            {/* Document Fields */}
             {Object.entries(document).map(([key, value]) => {
                 return (
                     <span key={value}>

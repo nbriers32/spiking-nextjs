@@ -25,10 +25,22 @@
       "type": "template"
     },
     {
-      "id": "b8de",
-      "name": "Nathans Document",
-      "version": "4",
+      "id": "ea77",
+      "name": "My Icon",
+      "version": "4.20",
       "type": "icon"
+    },
+    {
+      "id": "e78c",
+      "name": "Standards ",
+      "version": "4.20",
+      "type": "standards"
+    },
+    {
+      "id": "f433",
+      "name": "asd",
+      "version": "4.20",
+      "type": "regulations"
     }
   ]
 }

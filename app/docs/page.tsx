@@ -57,9 +57,8 @@ const DocsPage = () => {
                     body: JSON.stringify(docToPost)
                 })
                 const data = await res.json()
-                setDocumentsArr((currDocsArr => {
-                    return [...currDocsArr, data.body ]
-                }))
+                setAllDocuments((currDocsArr => {return [...currDocsArr, data.body ]}))
+                setDocumentsArr((currDocsArr => {return [...currDocsArr, data.body ]}))
                 setPopupMsg({message: data.message, timestamp: Date.now(), type: "success"})
             } catch(err: any) {
                 setPopupMsg({message: err.message, timestamp: Date.now(), type: "error"})
