@@ -64,12 +64,12 @@ const SingleDocPage = () => {
         {popupMsg && (<Popup key={popupMsg.timestamp} popupMsg={popupMsg.message} type={popupMsg.type}/>)}
         <h2 className="font-bold text-3xl"> Document Details </h2>
         <br/>
-        <div className="bg-background dark:bg-slate-700 rounded shadow-md
+        <div className="bg-white dark:bg-menu rounded-2xl shadow-md
         p-8
         flex gap-4 flex-col">
             <div className="flex justify-between">
                 <p className="text-gray-500 dark:text-white"> Edit/delete your document's information </p>
-                <button onClick={() => router.push('/docs')} className="p-2 bg-slate-300 rounded shadow font-bold dark:bg-slate-00 dark:text-black"> Close</button>
+                <button onClick={() => router.push('/docs')} className="p-2 bg-accent rounded shadow font-bold dark:bg-accent dark:text-black"> Close</button>
             </div>
 
             {/* Document Fields */}
@@ -77,7 +77,7 @@ const SingleDocPage = () => {
                 return (
                     <span key={value}>
                         <p> {key[0].toUpperCase() + key.slice(1)}:</p>
-                        <input className="border-1 rounded bg-blue-50 dark:bg-transparent w-full font-bold p-2" type="string" id={value} placeholder={value}/> 
+                        <input className="border-1 rounded bg-background dark:bg-transparent w-full font-bold p-2" type="string" id={value} placeholder={value}/> 
                     </span>
                 )
             })}
@@ -87,7 +87,7 @@ const SingleDocPage = () => {
                     <>
                         <button className="p-2 bg-red-400 text-white font-bold rounded shadow flex flex-row items-center" onClick={() => handleDeleteDoc()}>  
                             <TrashIcon className="w-6 h-6 text-white"/> Delete Document</button>
-                        <button className="p-2 bg-blue-700 text-white font-bold rounded shadow flex flex-row items-center" onClick={() => setPopupMsg({message: "Successfully updated document", type: "success", timestamp: Date.now()})}>
+                        <button className="p-2 bg-primary text-white font-bold rounded shadow flex flex-row items-center" onClick={() => setPopupMsg({message: "Successfully updated document", type: "success", timestamp: Date.now()})}>
                             <DocumentCheckIcon className="text-white h-6 w-6"/>  Save Changes </button>
 
                     </>

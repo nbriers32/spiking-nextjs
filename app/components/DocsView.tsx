@@ -24,11 +24,11 @@ const DocsView: React.FC<DocsViewProps> = ({documentsArr, loading, error}) => {
                 {documentsArr.map((document, i) => {
                     return (
                         <Link key={i} href={`/docs/${document.id}`}>
-                            <div className="bg-white dark:bg-gray-800 rounded-3xl p-4 shadow-xl hover:bg-slate-100 dark:hover:bg-gray-700">
+                            <div className="bg-white dark:bg-menu rounded-3xl p-4 shadow-xl hover:bg-accent dark:hover:bg-accent-dark">
                             <span className="flex flex-row">
                                 <p className="font-bold"> {document.name} </p>
                             </span>
-                            <p className="text-sm text-gray-500 italic"> v{document.version}</p>
+                            <p className="text-sm text-text-secondary italic"> v{document.version}</p>
                             <DocumentIcon docType={document.type}/>
                             </div>
                         </Link>

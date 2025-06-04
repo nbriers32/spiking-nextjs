@@ -102,34 +102,34 @@ const DocsPage = () => {
             { isModalOpen &&
             <Overlay>
                 {/* Modal Window */}
-                <div className="p-6 rounded-lg bg-white dark:bg-slate-700 shadow-sm">
+                <div className="p-6 rounded-lg bg-white dark:bg-menu shadow-sm">
                     <div>
                         <div className="flex flex-row justify-between items-center gap-4">
                         <h3 className="text-2xl font-bold"> Create New Document </h3>
-                        <button onClick={() => setIsModalOpen(false)} className="p-2 bg-slate-300 rounded shadow font-bold dark:text-black"> Close</button>
+                        <button onClick={() => setIsModalOpen(false)} className="p-2 bg-accent rounded shadow font-bold dark:text-black"> Close</button>
                         </div>
                         <form className="flex flex-col gap-4" onSubmit={(e) => handleCreateDoc(e)}>
                                 <span>
                                     <label htmlFor="name">Document Name </label>
                                     <br/>
-                                    <input className="border-1 rounded bg-blue-50 w-full dark:bg-transparent" type="string" id="name" required/>
+                                    <input className="border-1 rounded bg-background w-full dark:bg-transparent" type="string" id="name" required/>
                                 </span>
                                 
                                 <span>
                                     <label htmlFor="version">Version </label>
                                     <br/>
-                                    <input className="border-1 rounded bg-blue-50 w-full dark:bg-transparent" type="number" id="version" step="any" required/>
+                                    <input className="border-1 rounded bg-background w-full dark:bg-transparent" type="number" id="version" step="any" required/>
                                 </span>
                         
                                 <span>
                                     <label htmlFor="type"> Type </label>
                                     <br/>
-                                    <select defaultValue="" className="border-1 rounded bg-blue-50 w-full dark:bg-transparent" id="type" required>
+                                    <select defaultValue="" className="border-1 rounded bg-background w-full dark:bg-transparent" id="type" required>
                                         <option hidden disabled value=""> Document Type </option>
-                                        <option value="standards" className="dark:bg-slate-700"> Standards </option>
-                                        <option value="regulations" className="dark:bg-slate-700"> Regulations </option>
-                                        <option value="icon" className="dark:bg-slate-700"> Icon </option>
-                                        <option value="template" className="dark:bg-slate-700"> Template </option>
+                                        <option value="standards" className="dark:bg-menu"> Standards </option>
+                                        <option value="regulations" className="dark:bg-menu"> Regulations </option>
+                                        <option value="icon" className="dark:bg-menu"> Icon </option>
+                                        <option value="template" className="dark:bg-menu"> Template </option>
                                     </select>
                                 </span>
 
@@ -145,19 +145,19 @@ const DocsPage = () => {
         <div className="flex justify-between max-sm:flex-col"> 
             <h2 className="font-bold text-3xl"> Documents </h2>
             <div className="relative flex items-center gap-4">
-                <button onClick = {() => handleOpenModal()} className="p-2 bg-blue-700 text-white font-bold rounded shadow"> Create New </button>
+                <button onClick = {() => handleOpenModal()} className="p-2 bg-primary text-white font-bold rounded shadow"> Create New </button>
 
                 <div className="relative inline-block">
-                    <button onClick={() => setIsDropdownOpen(!isDropdownOpen)} className="p-2 border-1 bg-white dark:bg-gray-700 dark:border-white font-bold rounded shadow"> Filter By Type </button>
+                    <button onClick={() => setIsDropdownOpen(!isDropdownOpen)} className="p-2 border-1 bg-white dark:bg-accent-dark dark:border-border-dark font-bold rounded shadow"> Filter By Type </button>
                     {/* Dropdown Menu */ }
-                    <div className={`${isDropdownOpen ? 'max-h-40 opacity-100 pointer-events-auto' : 'max-h-0 opacity-0 pointer-events-none'} 
+                    <div className={`${isDropdownOpen ? 'max-h-40 opacity-100 pointer-events-auto' : 'max-h-0 opacity-0 pointer-events-none'}
                     transition-all duration-300 ease-in-out 
                     absolute mt-2 z-10 bg-white dark:bg-gray-700 dark:shadow-md dark:border-1 shadow-md w-full p-2 overflow-hidden `}>
                         {
                             docTypes.map((type, i) => {
                                 return (
                                     <div key={i} className="flex flex-row items-center">
-                                    <input type="checkbox" id={type} className="w-5 h-5 accent-blue-700 bg-gray-100 border-gray-300 rounded" value={type} onChange={(e) => handleDocFilter(e)}/>
+                                    <input type="checkbox" id={type} className="w-5 h-5 accent-primary bg-accent border-border rounded" value={type} onChange={(e) => handleDocFilter(e)}/>
                                     <label htmlFor={type}> {type[0].toUpperCase() + type.slice(1)} </label>
                                     </div>
                                 )

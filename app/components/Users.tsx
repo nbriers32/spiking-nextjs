@@ -56,9 +56,9 @@ const Users = () => {
                     {/* Mobile View */}
                     {userData.map(user => {
                         return (
-                            <Link href={`/users/${user.id}`} key={user.id} className="bg-white dark:bg-gray-800 rounded-3xl p-4 shadow-lg hover:bg-slate-100 dark:hover:bg-gray-700">
+                            <Link href={`/users/${user.id}`} key={user.id} className="bg-white dark:bg-menu rounded-3xl p-4 shadow-lg hover:bg-accent dark:hover:bg-accent-dark">
                                 <p className="font-bold">{user.name} </p>
-                                <p className="text-gray-800 text-xs italic"> @{user.username} </p>
+                                <p className="text-accent-dark text-xs italic"> @{user.username} </p>
                                 <span className="flex flex-row items-center"><EnvelopeIcon className="h-4 w-4"/> {user.email}</span>
                                 <span className="flex flex-row items-center"><PhoneIcon className="h-4 w-4"/> {user.phone}</span>
                             </Link>
@@ -66,27 +66,27 @@ const Users = () => {
                     })}
                 </div>
             ) : (
-                <div className="max-h-[calc(100vh-256px)] overflow-y-auto overflow-x-auto bg-white dark:bg-gray-800 rounded-3xl p-4 shadow-lg">
+                <div className="max-h-[calc(100vh-256px)] overflow-y-auto overflow-x-auto bg-white dark:bg-menu rounded-3xl p-4 shadow-lg">
                     {/* Desktop View */}
                 <table className="min-w-full border-collapse text-left table-auto">
                     <thead>
                     <tr>
                         { tableHeaders.map(((header, i) => {
-                            return <th key={i} className="border-b-2 border-gray-200 dark:border-gray-700"> {header} </th>
+                            return <th key={i} className="border-b-1 border-border dark:border-border-dark"> {header} </th>
                         }))}
                     </tr>
                     </thead>
                     <tbody>
                     {userData.map((user, i) => {
                         return (
-                        <tr key={i} className="hover:bg-slate-100 dark:hover:bg-gray-700">
-                            <td className="p-2 border-b border-gray-200 dark:border-gray-700"> {user.name} </td>
-                            <td className="p-2 border-b border-gray-200 dark:border-gray-700"> {user.username} </td>
-                            <td className="p-2 flex flex-col border-b border-gray-200 dark:border-gray-700"> 
+                        <tr key={i} className="hover:bg-accent dark:hover:bg-accent-dark">
+                            <td className="p-2 border-b border-border dark:border-accent-dark"> {user.name} </td>
+                            <td className="p-2 border-b border-border dark:border-accent-dark"> {user.username} </td>
+                            <td className="p-2 flex flex-col border-b border-border dark:border-accent-dark"> 
                                 <span className="flex flex-row items-center"><EnvelopeIcon className="h-4 w-4"/> {user.email}</span>
                                 <span className="flex flex-row items-center"><PhoneIcon className="h-4 w-4"/> {user.phone}</span>
                             </td>
-                            <td className="p-2 border-b border-gray-200 dark:border-gray-700"><Link href={`/users/${user.id}`}><MagnifyingGlassIcon className="w-8 h-8"/></Link></td>
+                            <td className="p-2 border-b border-border dark:border-accent-dark"><Link href={`/users/${user.id}`}><MagnifyingGlassIcon className="w-8 h-8"/></Link></td>
                         </tr>
                         )
                     })}

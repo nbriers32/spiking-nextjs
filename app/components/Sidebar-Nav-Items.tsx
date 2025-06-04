@@ -33,18 +33,18 @@ const SideBarNavItems = ({isExpanded} : {isExpanded: boolean}) => {
 
           {navItemsTop.map((navItemTop, i) => {
             return (
-              <Link href={navItemTop.href} key={i} className={`${navItemTop.href === pathname ? 'text-blue-700 font-bold' : '' } relative transition-colors flex items-center hover:bg-gray-700 p-2 rounded gap-4`}>
+              <Link href={navItemTop.href} key={i} className={`${navItemTop.href === pathname ? 'text-primary font-bold' : '' } relative transition-colors flex items-center hover:bg-accent-dark p-2 rounded gap-4`}>
                 <navItemTop.icon className="w-6 h-6"/>
                 {isExpanded && <p className="max-md:hidden"> {navItemTop.label}</p>}
               </Link>
             )
           })}
 
-          <hr className="my-3 text-gray-700"></hr>
+          <hr className="my-3 text-accent"></hr>
 
           {navItemsBottom.map((navItemBottom, i) => {
             return (
-              <Link href={navItemBottom.href} key={i} className={`${navItemBottom.href === pathname ? 'text-blue-700 font-bold' : ''} transition-colors relative flex items-center hover:bg-gray-700 p-2 rounded gap-4`}>
+              <Link href={navItemBottom.href} key={i} className={`${navItemBottom.href === pathname ? 'text-primary font-bold' : ''} transition-colors relative flex items-center hover:bg-accent-dark p-2 rounded gap-4`}>
                 <navItemBottom.icon className="w-6 h-6"/>
                 {isExpanded && <p className="max-md:hidden"> {navItemBottom.label}</p>}
               </Link>

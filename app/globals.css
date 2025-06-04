@@ -2,10 +2,16 @@
 
 
 @theme {
-  --color-background: rgb(255,255,255);
-  --color-background-dark: rgb(51, 65, 85);
+  --color-background: rgb(239, 246, 255);  
+  --color-background-dark: rgba(255,255,255,0.05);
+  --color-menu: rgb(31, 41, 55);
+  --color-menu-dark: rgb(26,26,26);
   --color-primary: rgb(29, 78, 216);
-  --color-accent: rgb(239, 246, 255);
+  --color-border: rgb(209, 213, 219);
+  --color-border-dark: rgb(255,255,255);
+  --color-accent: rgb(226, 232, 240);
+  --color-accent-dark: rgb(55, 65, 81);
+  --color-text-secondary: rgb(107, 114, 128);
 }
 
 
